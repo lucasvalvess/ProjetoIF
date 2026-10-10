@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Detalhes do Projeto</h2>
+<a href="{% url 'extensao:listaProjetos' %}" class="voltar">&larr; Voltar à lista</a>
+<div class="cartao-detalhes">
+    <p><strong>Título:</strong> {{ projeto.titulo }}</p>
+    <p><strong>Descrição:</strong> {{ projeto.descricao }}</p>
+    <p><strong>Categoria:</strong> {{ projeto.categoria.nome }}</p>
+    <p><strong>Equipe:</strong></p>
+    <ul>
+        {% for aluno in projeto.equipe.all %}
+        <li><a href="{% url 'extensao:detalhesAluno' aluno.id %}">{{ aluno.nome }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock content %}
